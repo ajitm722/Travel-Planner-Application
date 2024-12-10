@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -78,16 +79,23 @@ func HandlePlanRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Return the results in JSON format (or as plain text depending on preference)
-	response := fmt.Sprintf(
-		`{
-			"weather": "%s",
-			"flights": "%s",
-			"hotels": "%s"
-		}`, weatherInfo, flightOptions, hotelOptions)
+	// Prepare the structured response
+	response := map[string]interface{}{
+		"weather": weatherInfo,
+		"flights": flightOptions,
+		"hotels":  hotelOptions,
+	}
+
+	// Marshal the response into formatted JSON
+	jsonResponse, err := json.MarshalIndent(response, "", "  ")
+	if err != nil {
+		// Handle error if JSON marshalling fails
+		fmt.Printf("Error marshalling JSON response: %v\n", err)
+		return
+	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte(response))
+	w.Write(jsonResponse)
 }
 
 // HTTP server setup
