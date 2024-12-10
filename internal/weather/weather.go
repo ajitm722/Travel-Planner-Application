@@ -3,10 +3,11 @@ package weather
 import (
 	"context"
 	"fmt"
-	"log"
+	"time"
 	"travel-planner/internal/tracing"
 
 	"go.opentelemetry.io/otel/attribute"
+	"golang.org/x/exp/rand"
 )
 
 func GetWeather(ctx context.Context, city, startDate, endDate string) (string, error) {
@@ -27,9 +28,12 @@ func GetWeather(ctx context.Context, city, startDate, endDate string) (string, e
 		return "", err
 	}
 
-	log.Printf("Fetching weather for city: %s, dates: %s to %s", city, startDate, endDate)
+	// Simulate API Call with a random sleep between 1-5 seconds
+	sleepDuration := time.Duration(rand.Intn(5)+1) * time.Second // Random duration between 1 and 5 seconds
+	time.Sleep(sleepDuration)
 
-	// Simulate API Call
+	// Simulate API Call Result
 	result := fmt.Sprintf("Sunny in %s from %s to %s", city, startDate, endDate)
+
 	return result, nil
 }

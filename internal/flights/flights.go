@@ -3,10 +3,11 @@ package flights
 import (
 	"context"
 	"fmt"
-	"log"
+	"time"
 	"travel-planner/internal/tracing"
 
 	"go.opentelemetry.io/otel/attribute"
+	"golang.org/x/exp/rand"
 )
 
 func GetFlights(ctx context.Context, city, startDate, endDate string, minBudget, maxBudget int) (string, error) {
@@ -28,8 +29,9 @@ func GetFlights(ctx context.Context, city, startDate, endDate string, minBudget,
 		span.RecordError(err)
 		return "", err
 	}
-
-	log.Printf("Fetching flights for city: %s, budget: %d-%d", city, minBudget, maxBudget)
+	// Simulate API Call with a random sleep between 1-5 seconds
+	sleepDuration := time.Duration(rand.Intn(5)+1) * time.Second // Random duration between 1 and 5 seconds
+	time.Sleep(sleepDuration)
 
 	// Simulate API Call
 	result := fmt.Sprintf("Flights to %s: $500-$700", city)

@@ -3,10 +3,11 @@ package hotels
 import (
 	"context"
 	"fmt"
-	"log"
+	"time"
 	"travel-planner/internal/tracing"
 
 	"go.opentelemetry.io/otel/attribute"
+	"golang.org/x/exp/rand"
 )
 
 func GetHotels(ctx context.Context, city string, minBudget, maxBudget int) (string, error) {
@@ -27,9 +28,12 @@ func GetHotels(ctx context.Context, city string, minBudget, maxBudget int) (stri
 		return "", err
 	}
 
-	log.Printf("Fetching hotels in city: %s, budget: %d-%d", city, minBudget, maxBudget)
+	// Simulate API Call with a random sleep between 1-5 seconds
+	sleepDuration := time.Duration(rand.Intn(5)+1) * time.Second // Random duration between 1 and 5 seconds
+	time.Sleep(sleepDuration)
 
-	// Simulate API Call
+	// Simulate API Call result
 	result := fmt.Sprintf("Hotels in %s: $100-$200", city)
+
 	return result, nil
 }
