@@ -16,6 +16,13 @@ build:
 run: build
 	@./travel-planner
 
+# Install dependencies
+.PHONY: make-deps
+make-deps:
+	@echo "Installing dependencies..."
+	@go mod tidy
+
+
 # Test the application by prompting the user for input
 .PHONY: mock-user
 mock-user:
