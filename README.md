@@ -1,6 +1,6 @@
 # Travel Planner Application
 
-This project is a simple travel planning application that integrates weather, flight, and hotel information using APIs. It also demonstrates how to use OpenTelemetry for tracing and observability. The application handles user input via a web interface, allowing users to plan their trips with options for city, start date, end date, and budget.
+This project is a simple travel planning application that integrates weather, flight, and hotel information using APIs. It also demonstrates how to use OpenTelemetry for tracing and observability. The application handles user input via a cli interface, allowing users to plan their trips with options for city, start date, end date, and budget.
 
 ## Key Features
 
