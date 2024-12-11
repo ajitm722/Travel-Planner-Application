@@ -33,7 +33,7 @@ func GetHotels(ctx context.Context, city string, minBudget, maxBudget int) (stri
 	time.Sleep(sleepDuration)
 
 	// Simulate API Call result
-	result := fmt.Sprintf("Hotels in %s: $100-$200", city)
+	result := fmt.Sprintf("Hotels in %s: $%d-$%d", city, minBudget, maxBudget)
 
 	return result, nil
 }
